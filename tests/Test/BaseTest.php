@@ -13,6 +13,14 @@ use Tests\TestCase;
 
 class BaseTest extends TestCase
 {
+    public $params = [
+        1 => 1,
+        2 => 4,
+        3 => 6,
+        4 => 16,
+        5 => 100,
+    ];
+
     public function testExample()
     {
         $this->assertTrue(true);
@@ -20,25 +28,33 @@ class BaseTest extends TestCase
 
     public function testAdd()
     {
-        $params = [
-            1 => 1,
-            2 => 4,
-            3 => 6,
-            4 => 16,
-            5 => 100,
-        ];
-
         $calculater = new Calculater();
         $string = '+ (1) (+ (1) (2))';
-        $result = $calculater->calculater($string, $params);
+        $result = $calculater->calculater($string, $this->params);
         $this->assertEquals(6, $result);
 
         $string = '+ (1) (+ (1) 2)';
-        $result = $calculater->calculater($string, $params);
+        $result = $calculater->calculater($string, $this->params);
         $this->assertEquals(4, $result);
 
         $string = '+ (1) (+ 1 (5))';
-        $result = $calculater->calculater($string, $params);
+        $result = $calculater->calculater($string, $this->params);
         $this->assertEquals(102, $result);
+    }
+
+    public function testMinuse()
+    {
+        $calculater = new Calculater();
+        $string = '+ (1) (- (1) (2))';
+        $result = $calculater->calculater($string, $this->params);
+        $this->assertEquals(-2, $result);
+    }
+
+    public function testMultiplier()
+    {
+        $calculater = new Calculater();
+        $string = '+ (1) (* (1) (2))';
+        $result = $calculater->calculater($string, $this->params);
+        $this->assertEquals(5, $result);
     }
 }

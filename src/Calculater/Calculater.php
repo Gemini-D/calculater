@@ -9,12 +9,17 @@
 namespace Know\Calculater;
 
 use Know\Calculater\Adapter\Adder;
+use Know\Calculater\Adapter\Minuser;
+use Know\Calculater\Adapter\Multiplier;
 use Know\Calculater\Exceptions\CalculaterException;
+use Exception;
 
 class Calculater
 {
     public $adapter = [
         '+' => Adder::class,
+        '-' => Minuser::class,
+        '*' => Multiplier::class,
     ];
 
     public function calculater($string, $params = [])
@@ -54,7 +59,7 @@ class Calculater
             } else {
                 preg_match('/^\((.*)\)$/', $argument, $result);
                 if (!isset($result[1])) {
-                    throw new BizException(ErrorCode::$ENUM_CALCULATER_STRING_INVALID);
+                    throw new Exception('参数格式不合法');
                 }
 
                 if (is_numeric($result[1])) {
