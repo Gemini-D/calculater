@@ -8,28 +8,16 @@
 // +----------------------------------------------------------------------
 namespace Know\Calculater\Adapter;
 
+use Know\Calculater\Adapter;
 use Know\Calculater\CalculaterInterface;
 
-class Adder implements CalculaterInterface
+class Adder extends Adapter
 {
-    public $arguments;
-
-    public function __construct()
-    {
-        $this->arguments = func_get_args();
-    }
-
-
     public function handle()
     {
         $result = 0;
         foreach ($this->arguments as $arg) {
-            if (is_numeric($arg)) {
-                $result += $arg;
-            }
-            if ($arg instanceof CalculaterInterface) {
-                $result += floatval($arg->handle());
-            }
+            $result += $this->getValue($arg);
         }
         return $result;
     }

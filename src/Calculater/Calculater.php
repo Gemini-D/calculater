@@ -63,14 +63,14 @@ class Calculater
                 }
 
                 if (is_numeric($result[1])) {
-                    $arguments[] = $params[$result[1]];
+                    $arguments[] = $argument;
                 } else {
                     $arguments[] = $this->calculater($result[1], $params);
                 }
             }
         }
 
-        $adapter = new $this->adapter[$cal](...$arguments);
+        $adapter = new $this->adapter[$cal]($arguments, $params);
         return $adapter->handle();
     }
 }

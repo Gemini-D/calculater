@@ -8,32 +8,22 @@
 // +----------------------------------------------------------------------
 namespace Know\Calculater\Adapter;
 
+use Know\Calculater\Adapter;
 use Know\Calculater\CalculaterInterface;
 
-class Multiplier implements CalculaterInterface
+class Multiplier extends Adapter
 {
-    public $arguments;
-
-    public function __construct()
-    {
-        $this->arguments = func_get_args();
-    }
-
     public function handle()
     {
         $result = 0;
         $first = true;
         foreach ($this->arguments as $arg) {
+            $value = $this->getValue($arg);
             if ($first) {
-                $result = $arg;
+                $result = $value;
                 $first = false;
             } else {
-                if (is_numeric($arg)) {
-                    $result *= $arg;
-                }
-                if ($arg instanceof CalculaterInterface) {
-                    $result *= floatval($arg->handle());
-                }
+                $result *= $value;
             }
         }
         return $result;
