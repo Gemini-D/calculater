@@ -9,6 +9,7 @@
 namespace Know\Calculater;
 
 use Know\Calculater\Adapter\Adder;
+use Know\Calculater\Adapter\Divisier;
 use Know\Calculater\Adapter\Minuser;
 use Know\Calculater\Adapter\Multiplier;
 use Know\Calculater\Adapter\RangeAdder;
@@ -21,6 +22,7 @@ class Calculater
         '+' => Adder::class,
         '-' => Minuser::class,
         '*' => Multiplier::class,
+        '/' => Divisier::class,
         '++' => RangeAdder::class,
     ];
 

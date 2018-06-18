@@ -65,4 +65,12 @@ class BaseTest extends TestCase
         $result = $calculater->calculater($string, $this->params);
         $this->assertEquals(128, $result);
     }
+
+    public function testDivisier()
+    {
+        $calculater = new Calculater();
+        $string = '+ (1) (/ (5) (2))';
+        $result = $calculater->calculater($string, $this->params);
+        $this->assertEquals(26, $result);
+    }
 }
