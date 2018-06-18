@@ -57,4 +57,12 @@ class BaseTest extends TestCase
         $result = $calculater->calculater($string, $this->params);
         $this->assertEquals(5, $result);
     }
+
+    public function testRangeAdder()
+    {
+        $calculater = new Calculater();
+        $string = '+ (1) (++ 1 5)';
+        $result = $calculater->calculater($string, $this->params);
+        $this->assertEquals(128, $result);
+    }
 }

@@ -9,7 +9,6 @@
 namespace Know\Calculater\Adapter;
 
 use Know\Calculater\Adapter;
-use Know\Calculater\CalculaterInterface;
 
 class Multiplier extends Adapter
 {

@@ -11,6 +11,7 @@ namespace Know\Calculater;
 use Know\Calculater\Adapter\Adder;
 use Know\Calculater\Adapter\Minuser;
 use Know\Calculater\Adapter\Multiplier;
+use Know\Calculater\Adapter\RangeAdder;
 use Know\Calculater\Exceptions\CalculaterException;
 use Exception;
 
@@ -20,6 +21,7 @@ class Calculater
         '+' => Adder::class,
         '-' => Minuser::class,
         '*' => Multiplier::class,
+        '++' => RangeAdder::class,
     ];
 
     public function calculater($string, $params = [])

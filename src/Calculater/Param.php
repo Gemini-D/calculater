@@ -12,11 +12,16 @@ use Exception;
 
 class Param
 {
-    public $params;
+    protected $params;
 
     public function __construct($params)
     {
         $this->params = $params;
+    }
+
+    public function getParams()
+    {
+        return $this->params;
     }
 
     public function getValue($string)
@@ -31,9 +36,23 @@ class Param
         }
 
         if (!isset($this->params[$result[1]])) {
-            throw new Exception('目标参数不存在！');
+            throw new Exception("目标参数[$result[1]]不存在！");
         }
 
         return $this->params[$result[1]];
+    }
+
+    public function getRangeValue($begin, $end)
+    {
+        $result = [];
+        while ($begin <= $end) {
+            if (!isset($this->params[$begin])) {
+                throw new Exception("目标参数[$begin]不存在！");
+            }
+            $result[$begin] = $this->params[$begin];
+            $begin++;
+        }
+
+        return $result;
     }
 }
