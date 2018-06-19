@@ -26,7 +26,7 @@ class Calculater
         '++' => RangeAdder::class,
     ];
 
-    public function calculater($string, $params = [])
+    public function calculate($string, $params = [])
     {
         list($cal, $string) = explode(' ', $string, 2);
 
@@ -69,7 +69,7 @@ class Calculater
                 if (is_numeric($result[1])) {
                     $arguments[] = $argument;
                 } else {
-                    $arguments[] = $this->calculater($result[1], $params);
+                    $arguments[] = $this->calculate($result[1], $params);
                 }
             }
         }

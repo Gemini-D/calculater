@@ -30,15 +30,15 @@ class BaseTest extends TestCase
     {
         $calculater = new Calculater();
         $string = '+ (1) (+ (1) (2))';
-        $result = $calculater->calculater($string, $this->params);
+        $result = $calculater->calculate($string, $this->params);
         $this->assertEquals(6, $result);
 
         $string = '+ (1) (+ (1) 2)';
-        $result = $calculater->calculater($string, $this->params);
+        $result = $calculater->calculate($string, $this->params);
         $this->assertEquals(4, $result);
 
         $string = '+ (1) (+ 1 (5))';
-        $result = $calculater->calculater($string, $this->params);
+        $result = $calculater->calculate($string, $this->params);
         $this->assertEquals(102, $result);
     }
 
@@ -46,7 +46,7 @@ class BaseTest extends TestCase
     {
         $calculater = new Calculater();
         $string = '+ (1) (- (1) (2))';
-        $result = $calculater->calculater($string, $this->params);
+        $result = $calculater->calculate($string, $this->params);
         $this->assertEquals(-2, $result);
     }
 
@@ -54,7 +54,7 @@ class BaseTest extends TestCase
     {
         $calculater = new Calculater();
         $string = '+ (1) (* (1) (2))';
-        $result = $calculater->calculater($string, $this->params);
+        $result = $calculater->calculate($string, $this->params);
         $this->assertEquals(5, $result);
     }
 
@@ -62,7 +62,7 @@ class BaseTest extends TestCase
     {
         $calculater = new Calculater();
         $string = '+ (1) (++ 1 5)';
-        $result = $calculater->calculater($string, $this->params);
+        $result = $calculater->calculate($string, $this->params);
         $this->assertEquals(128, $result);
     }
 
@@ -70,7 +70,7 @@ class BaseTest extends TestCase
     {
         $calculater = new Calculater();
         $string = '+ (1) (/ (5) (2))';
-        $result = $calculater->calculater($string, $this->params);
+        $result = $calculater->calculate($string, $this->params);
         $this->assertEquals(26, $result);
     }
 }
