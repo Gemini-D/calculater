@@ -22,4 +22,7 @@ $params = [
 $calculater = new Calculater();
 $string = '+ (1) (+ (1) (2))';
 $result = $calculater->calculate($string, $params); // 6
+
+$string = '++ 1 3';
+$result = $calculater->calculate($string, $params); // 11
 ~~~
