@@ -21,6 +21,5 @@ $params = [
 
 $calculater = new Calculater();
 $string = '+ (1) (+ (1) (2))';
-$result = $calculater->calculate($string, $params);
-$this->assertEquals(6, $result);
+$result = $calculater->calculate($string, $params); // 6
 ~~~
