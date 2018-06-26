@@ -9,10 +9,11 @@
 namespace Know\Calculater;
 
 use Know\Calculater\Adapter\Adder;
+use Know\Calculater\Adapter\Averager;
 use Know\Calculater\Adapter\Divisier;
 use Know\Calculater\Adapter\Minuser;
 use Know\Calculater\Adapter\Multiplier;
-use Know\Calculater\Adapter\RangeAdder;
+use Know\Calculater\Adapter\Sumer;
 use Know\Calculater\Exceptions\CalculaterException;
 use Exception;
 
@@ -20,10 +21,16 @@ class Calculater
 {
     public $adapter = [
         '+' => Adder::class,
+        'ADD' => Adder::class,
         '-' => Minuser::class,
+        'MINUS' => Minuser::class,
         '*' => Multiplier::class,
+        'MULTI' => Multiplier::class,
         '/' => Divisier::class,
-        '++' => RangeAdder::class,
+        'DIVIS' => Divisier::class,
+        '++' => Sumer::class,
+        'SUM' => Sumer::class,
+        'AVERAGE' => Averager::class,
     ];
 
     public function calculate($string, $params = [])

@@ -73,4 +73,12 @@ class BaseTest extends TestCase
         $result = $calculater->calculate($string, $this->params);
         $this->assertEquals(26, $result);
     }
+
+    public function testAverage()
+    {
+        $calculater = new Calculater();
+        $string = 'AVERAGE 1 5';
+        $result = $calculater->calculate($string, $this->params);
+        $this->assertEquals(25.4, $result);
+    }
 }
