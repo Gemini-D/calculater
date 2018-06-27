@@ -81,4 +81,20 @@ class BaseTest extends TestCase
         $result = $calculater->calculate($string, $this->params);
         $this->assertEquals(25.4, $result);
     }
+
+    public function testParamsMoreThan10()
+    {
+        $params = [];
+        for ($i = 0; $i < 17; $i++) {
+            $params[] = 7;
+        }
+        $calculater = new Calculater();
+        $string = '++ 0 16';
+        $result = $calculater->calculate($string, $params);
+        $this->assertEquals(119, $result);
+
+        $string = '+ (0) 16';
+        $result = $calculater->calculate($string, $params);
+        $this->assertEquals(23, $result);
+    }
 }
