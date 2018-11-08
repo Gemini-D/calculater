@@ -25,4 +25,14 @@ $result = $calculater->calculate($string, $params); // 6
 
 $string = '++ 1 3';
 $result = $calculater->calculate($string, $params); // 11
+
+$extParams = [
+    1 => 0,
+    2 => 1,
+    3 => 1,
+    4 => 0,
+    5 => 2,
+];
+$string = '+ (1) (+ (1-1) (2-1))';
+$result = $calculater->calculate($string, $params); // 5
 ~~~
