@@ -97,4 +97,29 @@ class BaseTest extends TestCase
         $result = $calculater->calculate($string, $params);
         $this->assertEquals(23, $result);
     }
+
+    public function testMore() {
+      $calculater = new Calculater();
+      $string = "/ (+ (1) (3) (5) (7) (9) (11) (13) (15) (17) (19) (21) (22) (26) (27) (28)) (+ (0) (2) (4) (6) (8) (10) (12) (14) (16) (18) (20) (23) (24) (25) (29))";
+      $params = [];
+      for ($i = 0; $i < 30; $i++) {
+        $params[] = 1;
+      }
+      $result = $calculater->calculate($string, $params);
+      $this->assertEquals(1, $result);
+    }
+
+    public function testWithOption() {
+      $extParams = [
+        1 => 0,
+        2 => 1,
+        3 => 1,
+        4 => 0,
+        5 => 2,
+      ];
+      $calculater = new Calculater();
+      $string = '+ (1) (+ (1-1) (2-1))';
+      $result = $calculater->calculate($string, $this->params, $extParams);
+      $this->assertEquals(5, $result);
+    }
 }
