@@ -33,7 +33,7 @@ class Calculater
         'AVERAGE' => Averager::class,
     ];
 
-    public function calculate($string, $params = [])
+    public function calculate($string, $params = [], $extParams = [])
     {
         list($cal, $string) = explode(' ', $string, 2);
 
@@ -74,15 +74,16 @@ class Calculater
                     throw new Exception('参数格式不合法');
                 }
 
-                if (is_numeric($result[1])) {
+                preg_match("/^\d+(-\d+)?$/", $result[1], $withOptions);
+                if (is_numeric($result[1]) || isset($withOptions[1])) {
                     $arguments[] = $argument;
                 } else {
-                    $arguments[] = $this->calculate($result[1], $params);
+                    $arguments[] = $this->calculate($result[1], $params, $extParams);
                 }
             }
         }
 
-        $adapter = new $this->adapter[$cal]($arguments, $params);
+        $adapter = new $this->adapter[$cal]($arguments, $params, $extParams);
         return $adapter->handle();
     }
 }

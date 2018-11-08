@@ -26,10 +26,10 @@ abstract class Adapter implements CalculaterInterface
      * @param $arguments 变量KEY或者数字
      * @param $params    变量值
      */
-    public function __construct($arguments, $params)
+    public function __construct($arguments, $params, $extParams)
     {
         $this->arguments = $arguments;
-        $this->param = new Param($params);
+        $this->param = new Param($params, $extParams);
     }
 
     public function getValue($string)
