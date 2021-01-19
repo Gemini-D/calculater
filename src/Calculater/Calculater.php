@@ -1,7 +1,15 @@
 <?php
 
+declare(strict_types=1);
+/**
+ * This file is part of Knowyourself.
+ *
+ * @contact  l@hyperf.io
+ * @license  https://github.com/kyknow/calculater/blob/master/LICENSE
+ */
 namespace Know\Calculater;
 
+use Exception;
 use Know\Calculater\Adapter\Abser;
 use Know\Calculater\Adapter\Adder;
 use Know\Calculater\Adapter\Averager;
@@ -10,7 +18,6 @@ use Know\Calculater\Adapter\Minuser;
 use Know\Calculater\Adapter\Multiplier;
 use Know\Calculater\Adapter\Sumer;
 use Know\Calculater\Exceptions\CalculaterException;
-use Exception;
 
 class Calculater
 {
@@ -26,14 +33,14 @@ class Calculater
         '++' => Sumer::class,
         'SUM' => Sumer::class,
         'AVERAGE' => Averager::class,
-        'ABS' => Abser::class
+        'ABS' => Abser::class,
     ];
 
     public function calculate($string, $params = [], $extParams = [])
     {
-        list($cal, $string) = explode(' ', $string, 2);
+        [$cal, $string] = explode(' ', $string, 2);
 
-        if (! isset($this->adapter[ $cal ])) {
+        if (! isset($this->adapter[$cal])) {
             throw new CalculaterException('Calcaulater Adapter is not defined.');
         }
 
@@ -42,12 +49,12 @@ class Calculater
         $pre_arguments = [];
         $param = '';
         $depth = 0;
-        for ($i = 0; $i < strlen($string); $i++) {
-            $char = $string[ $i ];
+        for ($i = 0; $i < strlen($string); ++$i) {
+            $char = $string[$i];
             if ($char === '(') {
-                $depth++;
+                ++$depth;
             } elseif ($char === ')') {
-                $depth--;
+                --$depth;
             }
             $param .= $char;
 
@@ -70,7 +77,7 @@ class Calculater
                     throw new Exception('参数格式不合法');
                 }
 
-                preg_match("/^\d+(-\d+)?$/", $result[1], $withOptions);
+                preg_match('/^\\d+(-\\d+)?$/', $result[1], $withOptions);
                 if (is_numeric($result[1]) || isset($withOptions[1])) {
                     $arguments[] = $argument;
                 } else {

@@ -1,13 +1,13 @@
 <?php
 
+declare(strict_types=1);
+/**
+ * This file is part of Knowyourself.
+ *
+ * @contact  l@hyperf.io
+ * @license  https://github.com/kyknow/calculater/blob/master/LICENSE
+ */
 namespace Know\Calculater;
-
-use Know\Calculater\Adapter\Adder;
-use Know\Calculater\Adapter\Minuser;
-use Know\Calculater\Adapter\Multiplier;
-use Know\Calculater\Exceptions\CalculaterException;
-use Exception;
-use Know\Calculater\Param;
 
 abstract class Adapter implements CalculaterInterface
 {
@@ -19,6 +19,7 @@ abstract class Adapter implements CalculaterInterface
      * Adapter constructor.
      * @param $arguments 变量KEY或者数字
      * @param $params    变量值
+     * @param mixed $extParams
      */
     public function __construct($arguments, $params, $extParams)
     {
