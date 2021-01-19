@@ -4,7 +4,7 @@
 
 ## 安装
 ```
-composer require know/calculater
+composer require genimi/calculater
 ```
 
 ## 使用
