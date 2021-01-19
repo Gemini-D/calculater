@@ -1,6 +1,7 @@
 # Calculater
 
-[![Build Status](https://travis-ci.org/kyknow/calculater.svg?branch=master)](https://travis-ci.org/kyknow/calculater)
+![PHPUnit](https://github.com/kyknow/calculater/workflows/PHPUnit/badge.svg)
+
 ## 安装
 ```
 composer require know/calculater
