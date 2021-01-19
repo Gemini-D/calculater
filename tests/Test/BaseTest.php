@@ -122,4 +122,13 @@ class BaseTest extends TestCase
       $result = $calculater->calculate($string, $this->params, $extParams);
       $this->assertEquals(5, $result);
     }
+
+
+    public function testAbser()
+    {
+        $calculater = new Calculater();
+        $string = 'ABS (+ (1) (- (1) (2)))';
+        $result = $calculater->calculate($string, $this->params);
+        $this->assertEquals(2, $result);
+    }
 }

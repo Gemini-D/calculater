@@ -8,6 +8,7 @@
 // +----------------------------------------------------------------------
 namespace Know\Calculater;
 
+use Know\Calculater\Adapter\Abser;
 use Know\Calculater\Adapter\Adder;
 use Know\Calculater\Adapter\Averager;
 use Know\Calculater\Adapter\Divisier;
@@ -31,13 +32,14 @@ class Calculater
         '++' => Sumer::class,
         'SUM' => Sumer::class,
         'AVERAGE' => Averager::class,
+        'ABS' => Abser::class
     ];
 
     public function calculate($string, $params = [], $extParams = [])
     {
         list($cal, $string) = explode(' ', $string, 2);
 
-        if (!isset($this->adapter[$cal])) {
+        if (! isset($this->adapter[ $cal ])) {
             throw new CalculaterException('Calcaulater Adapter is not defined.');
         }
 
@@ -47,7 +49,7 @@ class Calculater
         $param = '';
         $depth = 0;
         for ($i = 0; $i < strlen($string); $i++) {
-            $char = $string[$i];
+            $char = $string[ $i ];
             if ($char === '(') {
                 $depth++;
             } elseif ($char === ')') {
@@ -70,7 +72,7 @@ class Calculater
                 $arguments[] = $argument;
             } else {
                 preg_match('/^\((.*)\)$/', $argument, $result);
-                if (!isset($result[1])) {
+                if (! isset($result[1])) {
                     throw new Exception('参数格式不合法');
                 }
 
