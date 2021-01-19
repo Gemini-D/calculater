@@ -2,12 +2,12 @@
 
 [![Build Status](https://travis-ci.org/kyknow/calculater.svg?branch=master)](https://travis-ci.org/kyknow/calculater)
 ## 安装
-~~~
+```
 composer require know/calculater
-~~~
+```
 
 ## 使用
-~~~php
+```php
 <?php
 use Know\Calculater\Calculater;
 
@@ -26,6 +26,7 @@ $result = $calculater->calculate($string, $params); // 6
 $string = '++ 1 3';
 $result = $calculater->calculate($string, $params); // 11
 
+// 对应的选项
 $extParams = [
     1 => 0,
     2 => 1,
@@ -33,6 +34,8 @@ $extParams = [
     4 => 0,
     5 => 2,
 ];
-$string = '+ (1) (+ (1-1) (2-1))';
-$result = $calculater->calculate($string, $params); // 5
-~~~
+
+//（数字①-数字②）代表第①题的选项②（②从0开始，按顺序计。用户选此选项计单项分，未选不计）
+$string = '+ (1) (+ (1-1) (2-1))'; // 1 + 0 + 4
+$result = $calculater->calculate($string, $params, $extParams); // 5
+```
