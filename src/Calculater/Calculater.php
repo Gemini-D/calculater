@@ -39,6 +39,7 @@ class Calculater
     public function calculate($string, $params = [], $extParams = [])
     {
         [$cal, $string] = explode(' ', $string, 2);
+        $cal = strtoupper($cal);
 
         if (! isset($this->adapter[$cal])) {
             throw new CalculaterException('Calcaulater Adapter is not defined.');
